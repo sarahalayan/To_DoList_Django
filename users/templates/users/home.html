@@ -1,0 +1,46 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/main.css' %}">
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+</head>
+{% if title%}
+<title>Django Blog - {{title}}</title>
+{%else%}
+<title>My To-Do App {{title}}</title>
+{%endif%}
+</head>
+
+<body>
+    <div class="main-content">
+        <p class="he"> My To-Do App</p>
+
+        <img src="{% static 'users/images/background.png' %}" alt="Background image">
+        
+        {% block content %}{% endblock %}
+    </div>
+
+
+    <footer>
+        <div class="social-icons">
+
+            <ul>
+                <li><a href="https://www.djangoproject.com/"><i class="fa-brands fa-facebook"></i></a></li>
+                <li><a href="https://www.djangoproject.com/"><i class="fa-brands fa-instagram"></i></a></li>
+                <li><a href="https://www.djangoproject.com/"><i class="fa-solid fa-envelope"></i></a></li>
+            </ul>
+        </div>
+        <div class="rights">
+            <p>&copy; 2023 My To-Do App. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

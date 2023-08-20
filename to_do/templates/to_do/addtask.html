@@ -1,0 +1,51 @@
+{% extends "users/home.html" %}
+{% block content %}
+<style>
+    .form-box {
+        width: 400px;
+        height: 600px;
+        position: relative;
+        margin: 15% auto;
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 5px;
+        z-index: 2;
+    }
+
+    input[type="text"] {
+
+        width: 80%;
+    }
+</style>
+<div class="form-box">
+<form method="POST" >
+
+    {% csrf_token %}
+    <h3>Title:</h3>
+    <div>{{form.title}}</div>
+
+
+    <h3>Details:</h3>
+    <div>{{form.details}}</div>
+    <h3>Deadline:</h3>
+    <div>{{form.deadline}}</div>
+    <h3>Important {{form.important}}</h3>
+
+    <div>
+        <button class="submit-btn" type="submit">Add</button>
+    </div>
+   
+</form>
+<div>
+   <button class="submit-btn link">Quit</button>
+</div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleButton1 = document.querySelector(".link");
+        toggleButton1.addEventListener("click", function () {
+
+            window.location.href = "http://127.0.0.1:8000/index/";
+        }); 
+    });
+</script>
+{% endblock content %}

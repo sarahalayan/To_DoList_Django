@@ -1,0 +1,83 @@
+{% extends "users/home.html" %}
+{% block content %}
+<style>
+    .container {
+        padding-top: 150px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-gap: 10px;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 1200px;
+        margin: 0 auto;
+        z-index: 2;
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Adjust overlay color */
+        color: white;
+        padding: 10px;
+        z-index: 2;
+    }
+
+    .she {
+        font-family: cursive, Arial;
+        font-weight: bold;
+        position: absolute;
+        bottom: 4%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-size: 40px;
+        color: var(--first-color);
+        /* Text color */
+        background-color: rgba(255, 255, 255, 0.7);
+        /* White color with 50% transparency */
+        padding: 5px 20px;
+        z-index: 2;
+    }
+</style>
+
+<div class="container">
+
+
+
+    {% for task in list %}
+    <div class="overlay">
+        {{ task.title }}
+        {% if task.important %}
+        <i class="fa-solid fa-star"></i>
+        {% endif %}
+        <a href="{%url 'edittask' task.pk %}"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a href="{%url 'deletetask' task.pk %}"><i class="fa-solid fa-trash"></i></a>
+
+        {% if task.completed %}
+        <i class="fa-solid fa-check"></i>
+        {% else %}
+        <a href="{%url 'updatetask' task.pk %}"><button>Mark as done</button></a>
+        {% endif %}
+
+        <ul>
+
+            <li>Created At: {{ task.created_at }}</li>
+            {% if task.details %}
+            <li>Details: {{ task.details }}</li>
+            {% else %}
+            <br>
+            {% endif %}
+            <li>Deadline: {{ task.deadline }}</li>
+
+        </ul>
+    </div>
+
+
+    {% empty %}
+    <h3>No tasks yet.</h3>
+    {% endfor %}
+
+
+</div>
+<a class="she" href="{%url 'addtask'  %}"><i class="fa-solid fa-plus"></i></a>
+
+{% endblock content %}
